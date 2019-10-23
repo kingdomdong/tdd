@@ -2,11 +2,11 @@ package CountOut;
 
 import static java.lang.String.valueOf;
 
-public class CountOut {
+public class CountOutBakFirst {
 
     private final int index;
 
-    public CountOut(int index) {
+    public CountOutBakFirst(int index) {
         this.index = index;
     }
 

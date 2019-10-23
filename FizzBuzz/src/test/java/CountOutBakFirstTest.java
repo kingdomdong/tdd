@@ -1,11 +1,11 @@
-import CountOut.CountOut;
+import CountOut.CountOutBakFirst;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 
-public class CountOutTest {
+public class CountOutBakFirstTest {
 
     @Test
     public void isMatchFizzWhenDivideByThree() {
@@ -35,7 +35,7 @@ public class CountOutTest {
     }
 
     private void checkCountOut(int input, String countOut) {
-        assertThat(new CountOut(input).content(), is(countOut));
+        assertThat(new CountOutBakFirst(input).content(), is(countOut));
     }
 
 }

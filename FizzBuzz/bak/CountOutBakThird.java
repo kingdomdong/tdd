@@ -1,4 +1,4 @@
-package CountOut;
+package countout;
 
 import static java.lang.String.valueOf;
 

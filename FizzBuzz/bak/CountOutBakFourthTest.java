@@ -1,4 +1,4 @@
-package CountOut;
+package countout;
 
 import org.junit.Test;
 

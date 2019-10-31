@@ -1,4 +1,4 @@
-import CountOut.CountOutBakThird;
+import countout.CountOutBakThird;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

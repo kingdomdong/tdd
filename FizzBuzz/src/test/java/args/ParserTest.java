@@ -1,5 +1,6 @@
 package args;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +11,7 @@ public class ParserTest {
     public void isMatchTrueWhenListGetFlagL() {
         assertEquals(false, new Parser(new ArgTypes("l", "bool"), new RawArgs("-l", "")).get("l"));
         assertEquals(false, new Parser(new ArgTypes("l", "bool", "p", "int"), new RawArgs()).get("l"));
-        assertEquals(0, new Parser(new ArgTypes("p", "int", "l"), new RawArgs("-l", "false")).get("p"));
+        Assertions.assertEquals(0, new Parser(new ArgTypes("p", "int", "l"), new RawArgs("-l", "false")).get("p"));
     }
 
     @Test
@@ -27,7 +28,7 @@ public class ParserTest {
     @Test
     public void isMatchIntListWhenTypeIsIntList() {
         assertArrayEquals(new int[]{1, -9, 8},
-                (int[]) new Parser(new ArgTypes("d", "intlist"), new RawArgs("-d", "1,-9,8")).get("d")
+                (int[]) new Parser(new ArgTypes("d", "intlist", "l", "bool", "g", "strlist"), new RawArgs("-d", "1,-9,8")).get("d")
         );
     }
 

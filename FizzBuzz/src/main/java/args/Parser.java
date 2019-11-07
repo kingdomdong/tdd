@@ -1,39 +1,39 @@
 package args;
 
-import java.util.stream.Stream;
+import org.apache.commons.lang3.StringUtils;
 
 public class Parser {
+
     private ArgTypes argTypes;
     private RawArgs rawArgs;
 
-    public Parser(ArgTypes argTypes, RawArgs rawArgs) {
-        this.argTypes = argTypes;
-        this.rawArgs = rawArgs;
+    public Parser(String[] argTypes, String[] rawArgs) {
+        this.argTypes = new ArgTypes(argTypes);
+        this.rawArgs = new RawArgs(rawArgs);
     }
 
-    public<T extends Object> T get(String flag) {
-        if ("bool".equals(argTypes.getType(flag))) {
-            T t = (T) (Boolean.parseBoolean(rawArgs.getValue(flag)));
-            return t;
+    public Object get(String flag) {
+        if (isTypeEquals(flag, "bool")) {
+            return getBooleanArg(flag);
         }
 
-//        if ("str".equals(argTypes.getType(flag)))
-//            return (T)rawArgs.getValue(flag);
-//
-//        if ("int".equals(argTypes.getType(flag)))
-//            return rawArgs.getValue(flag).equals("")
-//                    ? 0
-//                    : Integer.parseInt(rawArgs.getValue(flag));
-//
-//        if ("strlist".equals(argTypes.getType(flag)))
-//            return rawArgs.getValue(flag).split(",");
-//
-//        if ("intlist".equals(argTypes.getType(flag)))
-//            return Stream.of(rawArgs.getValue(flag).split(","))
-//                    .mapToInt(Integer::parseInt)
-//                    .toArray();
+        if (isTypeEquals(flag, "int")) {
+            return getIntArg(flag);
+        }
 
-        throw new ParserArgsException("-" + flag + " type is illegal, please try again");
+        return "";
+    }
+
+    private Object getIntArg(String flag) {
+        return Integer.parseInt(StringUtils.isBlank(rawArgs.getValue(flag)) ? "0" : rawArgs.getValue(flag));
+    }
+
+    private Object getBooleanArg(String flag) {
+        return Boolean.parseBoolean(rawArgs.getValue(flag));
+    }
+
+    private boolean isTypeEquals(String flag, String bool) {
+        return bool.equals(argTypes.getType(flag));
     }
 
 }

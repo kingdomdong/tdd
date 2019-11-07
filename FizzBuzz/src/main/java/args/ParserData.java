@@ -1,23 +1,14 @@
 package args;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 
 public class ParserData {
 
 
-    public List<String> revise(String ... rawArgs) {
-        return Arrays.asList(rawArgs)
-                .stream()
-                .map(item -> item.trim())
-                .collect(Collectors.toList());
-    }
-
-    public String getArrayNextValue(List<String> array, String flag) {
-        for (int i = 0; i < array.size(); i++) {
-            if (array.get(i).equals(flag) && i + 1 < array.size())
-                return array.get(++i);
+    protected String getNextItem(String[] strings, String flag) {
+        for (int i = 0; i < strings.length; i++) {
+            if (StringUtils.isNotBlank(flag) && flag.equals(strings[i]) && i + 1 < strings.length)
+                return strings[++i].trim();
         }
         return "";
     }

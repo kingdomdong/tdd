@@ -1,17 +1,15 @@
 package args;
 
-import java.util.List;
-
 public class RawArgs extends ParserData {
 
-    private List<String> rawArgs;
+    private String[] rawArgs;
 
-    public RawArgs(String ... rawArgs) {
-        this.rawArgs = revise(rawArgs);
+    public RawArgs(String[] rawArgs) {
+        this.rawArgs = rawArgs;
     }
 
     public String getValue(String flag) {
-        return getArrayNextValue(rawArgs, "-" + flag);
+        return getNextItem(rawArgs, "-" + flag);
     }
 
 }

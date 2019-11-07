@@ -1,17 +1,15 @@
 package args;
 
-import java.util.List;
-
 public class ArgTypes extends ParserData {
 
-    private List<String> argTypes;
+    private String[] argTypes;
 
-    public ArgTypes(String ... argTypes) {
-        this.argTypes = revise(argTypes);
+    public ArgTypes(String[] argTypes) {
+        this.argTypes = argTypes;
     }
 
     public String getType(String flag) {
-        return getArrayNextValue(argTypes, flag);
+         return getNextItem(argTypes, flag);
     }
 
 }
